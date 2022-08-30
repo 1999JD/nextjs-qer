@@ -1,5 +1,8 @@
-import { Avatar, Card, Badge } from '@mui/material';
+import { Avatar, Card, CardHeader, CardTitle, CardContent, Badge, Typography } from '@mui/material';
+
 import { useState } from 'react';
+import Link from 'next/link'
+
 
 function MiniWindow() {
 	let [toggle, setToggle] = useState(false);
@@ -7,18 +10,17 @@ function MiniWindow() {
 		setToggle(!toggle);
 	}
 	return (
-		<div className="miniwindow text-center">
-
+		<div>
 			{toggle && (
 				<Card bg="warning" onClick={handleToggle} text='dark'>
-					<Card.Header>餐廳名稱</Card.Header>
-					<Card.Body>
-						<Card.Title>目前順序</Card.Title>
-						<Card.Text>
-							8
-						</Card.Text>
-						<Link className={"nav-link text-white"} to="/order">前往餐廳</Link>
-					</Card.Body>
+					<CardHeader>餐廳名稱</CardHeader>
+					<CardContent>
+						<Typography sx={{ mb: 1.5 }} color="text.secondary">
+							目前順序
+						</Typography>
+						8
+						<Link href="/order"><a>前往餐廳</a></Link>
+					</CardContent>
 				</Card>
 
 			)}
@@ -30,10 +32,7 @@ function MiniWindow() {
 				</Badge>
 			)}
 		</div>
-
-
 	)
-
 }
 
 export default MiniWindow;
