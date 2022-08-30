@@ -12,6 +12,9 @@ const theme = createTheme({
       main: '#c59a50',
     },
   },
+  ul: {
+    listStyle: 'none'
+  }
 })
 
 export default theme
