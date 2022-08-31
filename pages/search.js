@@ -7,19 +7,19 @@ import FeaturedPost from '../src/components/search/FeaturedPost';
 
 const featuredPosts = [
   {
-    title: 'Featured post',
-    date: 'Nov 12',
+    id: '123swe',
+    title: '大飽飽',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+      '中式餐廳。販賣麵類、飯類。營業時間：11:00 - 14:00 ',
+    image: 'https://source.unsplash.com/random/300×150/?restaurant,rice',
     imageText: 'Image Text',
   },
   {
-    title: 'Post title',
-    date: 'Nov 11',
+    id: 'sie113',
+    title: '元氣咖啡廳',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
+      '營業時間：11:00 - 18:00。元氣咖啡廳，給你活力滿滿的下午。',
+    image: 'https://source.unsplash.com/random/300×150/?coffee,restaurant',
     imageText: 'Image Text',
   },
 ];
@@ -62,7 +62,6 @@ export default function Search() {
       {/* {result.data.slice(0, visible).map((item) => (
                 <Button className="d-block mb-4">{item.title}</Button>
             ))} */}
-      {router.query.id}
       {/* {isLoading ? '更新中' : '更新完畢'} */}
 
       <Container maxWidth="lg">

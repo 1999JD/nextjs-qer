@@ -5,16 +5,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Link from 'next/link'
-import CssBaseline from '@mui/material/CssBaseline';
-
+import Image from 'next/image'
 
 function FeaturedPost({ post }) {
   return (
     <Grid item xs={12} md={6} component="li">
-      <CssBaseline />
       <Card>
+        <Image src={post.image} width={300} height={150} />
         <CardContent>
-          {post.title}
           <Typography component="h2" variant="h5">
             {post.title}
           </Typography>
@@ -25,9 +23,8 @@ function FeaturedPost({ post }) {
             {post.description}
           </Typography>
           <Typography component="h2" variant="subtitle1" color="primary">
-
-            <Link href="/">
-              <a>continue reading</a>
+            <Link href={`/store/${post.id}`}>
+              <a>我要排隊</a>
             </Link>
           </Typography>
         </CardContent>
