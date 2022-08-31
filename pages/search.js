@@ -11,7 +11,7 @@ const featuredPosts = [
     title: '大飽飽',
     description:
       '中式餐廳。販賣麵類、飯類。營業時間：11:00 - 14:00 ',
-    image: 'https://source.unsplash.com/random/300×150/?restaurant,rice',
+    image: 'https://source.unsplash.com/random/300x150/?restaurant,rice',
     imageText: 'Image Text',
   },
   {
@@ -19,7 +19,7 @@ const featuredPosts = [
     title: '元氣咖啡廳',
     description:
       '營業時間：11:00 - 18:00。元氣咖啡廳，給你活力滿滿的下午。',
-    image: 'https://source.unsplash.com/random/300×150/?coffee,restaurant',
+    image: 'https://source.unsplash.com/random/300x150/?coffee,restaurant',
     imageText: 'Image Text',
   },
 ];

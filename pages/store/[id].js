@@ -6,12 +6,37 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
 import HighlightOff from '@mui/icons-material/HighlightOff';
+import styled from '@emotion/styled'
+import Link from 'next/link'
+
+const LightBoxStyled = styled(Paper)({
+  position: 'fixed',
+  zIndex: 1201,
+  top: 0,
+  bottom: 0,
+  left: 0,
+  right: 0,
+  margin: 'auto',
+  maxWidth: '80vw',
+  width: '600px',
+  maxHeight: '80vh',
+  height: 'fit-content',
+  padding: '16px',
+})
+
+const ImageStyled = styled('img')({
+  width: '100%',
+  height: 'auto',
+})
 
 function Lightbox({ handleLightbox }) {
-
   return (
-    <Paper elevation={15} >
-      <HighlightOff onClick={handleLightbox} />
+    <LightBoxStyled elevation={3}>
+      <HighlightOff onClick={handleLightbox} sx={{
+        position: 'absolute',
+        right: 3,
+        top: 3,
+      }} />
       <Typography variant="h6" gutterBottom>
         請輸入您的資料
       </Typography>
@@ -56,11 +81,13 @@ function Lightbox({ handleLightbox }) {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button color='primary' variant="contained" >送出</Button>
+          <Link href="/queueing/asdf">
+            <Button color='primary' variant="contained" >送出</Button>
+          </Link>
         </Grid>
 
       </Grid>
-    </Paper>
+    </LightBoxStyled>
   )
 }
 
@@ -74,12 +101,12 @@ function Client() {
 
   return (
 
-    <Container >
+    <Container maxWidth="lg">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
-          <img src="https://fakeimg.pl/250x300/" alt="" />
+        <Grid item xs={12} md={5}>
+          <ImageStyled src='https://source.unsplash.com/random/300x150/?food' layout='fill' />
         </Grid>
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} md={7}>
           <h2>美食大同</h2>
           <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, itaque facere voluptatibus sunt odit eum ipsam architecto nostrum optio, inventore, at veritatis et quia soluta nemo! Molestiae cumque laudantium eveniet. </p>
           <p>XX市XX區XX里XX路XX段XX號</p>
@@ -103,7 +130,7 @@ function Client() {
       }
 
 
-    </Container >
+    </Container>
   )
 }
 export default Client;
