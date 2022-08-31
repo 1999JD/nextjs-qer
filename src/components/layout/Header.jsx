@@ -5,7 +5,7 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import PaymentIcon from '@mui/icons-material/Payment';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,9 +16,11 @@ import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import PolicyIcon from '@mui/icons-material/Policy';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link'
 
 const drawerWidth = 240;
 
@@ -28,34 +30,80 @@ function ResponsiveDrawer(props) {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-  const Icons = [<PaymentIcon />, <RoomServiceIcon />, <ListAltIcon />, <AccountCircleIcon />]
-  const Layer2Icons = [<MailIcon />, <PolicyIcon />]
+  }
+  const menuLayer1 = [
+    {
+      text: '搜尋餐廳',
+      icon: < ContentPasteSearchIcon />,
+      link: '/search',
+    },
+    {
+      text: '訂閱方案',
+      icon: <PaymentIcon />,
+      link: '/',
+    },
+    {
+      text: '目前訂單',
+      icon: <RoomServiceIcon />,
+      link: '/queueing/123swe',
+    },
+    {
+      text: '訂單紀錄',
+      icon: <ListAltIcon />,
+      link: '/',
+    },
+    {
+      text: '會員中心',
+      icon: <AccountCircleIcon />,
+      link: '/',
+    },
+  ]
+  const menuLayer2 = [
+    {
+      text: '登出',
+      icon: <LogoutIcon />,
+      link: '/',
+    },
+    {
+      text: '加入我們',
+      icon: <MailIcon />,
+      link: '/',
+    },
+    {
+      text: '隱私權政策',
+      icon: <PolicyIcon />,
+      link: '/',
+    },
+  ]
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {['訂閱方案', '目前訂單', '訂單紀錄', '會員中心'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {menuLayer1.map((item, index) => (
+          <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {Icons[index]}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <Link href={item.link}>
+                <ListItemText primary={item.text} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {['加入我們', '隱私權政策'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {menuLayer2.map((item, index) => (
+          <ListItem key={item.text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {Layer2Icons[index]}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <Link href={item.link}>
+                <ListItemText primary={item.text} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}

@@ -31,7 +31,7 @@ const ImageStyled = styled('img')({
   height: 'auto',
 })
 
-function Lightbox({ handleLightbox }) {
+function Lightbox({ handleLightbox, storeId }) {
   return (
     <LightBoxStyled elevation={3}>
       <HighlightOff onClick={handleLightbox} sx={{
@@ -83,7 +83,7 @@ function Lightbox({ handleLightbox }) {
           />
         </Grid>
         <Grid item xs={12}>
-          <Link href="/queueing/asdf">
+          <Link href={`/queueing/${storeId}`}>
             <Button color='primary' variant="contained" >送出</Button>
           </Link>
         </Grid>
@@ -123,11 +123,9 @@ export default function Store({ storeInfo }) {
       </Grid >
       {
         lightboxOpen && (
-          <Lightbox handleLightbox={handleLightbox} />
+          <Lightbox handleLightbox={handleLightbox} storeId={storeInfo.id} />
         )
       }
-
-
     </Container>
   )
 }

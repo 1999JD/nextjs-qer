@@ -8,8 +8,9 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import StarIcon from '@mui/icons-material/StarBorder';
 import styled from '@emotion/styled'
+import request from '../../src/request'
+
 
 
 const ImageStyled = styled('img')({
@@ -17,7 +18,7 @@ const ImageStyled = styled('img')({
   height: 'auto',
 })
 //materialui component copyright
-function Order() {
+function Order({ queueInfo }) {
   // let notification = () => {
   //     if (typeof Notification !== 'undefined') {
   //         new Notification("It's your turn !");
@@ -56,39 +57,29 @@ function Order() {
   //   console.log(e.data);
   //   setNumber(8);
   // }
-  const tier = {
-    title: '店家的名字',
-    qerNum: '8',
-    description: '我是店家描述我是店家描述我是店家描述我是店家描述',
-    buttonText: '取消等候',
-    buttonVariant: 'contained',
-  }
+
 
   return (
     <Container component="main" maxWidth="xs">
-      <Card >
+      <Card>
         <CardHeader
-          title={tier.title}
-          color="secondary"
+          title={queueInfo.title}
           titleTypographyProps={{ align: 'center' }}
           subheaderTypographyProps={{ align: 'center' }}
-          action={tier.title === 'Pro' ? <StarIcon /> : null}
-
         />
         <CardContent>
           <Typography component="h2" variant="h3" align='center'>
-            {number}
+            {queueInfo.currentWaitNumber}
           </Typography>
           <ImageStyled src='https://source.unsplash.com/random/300x150/?food' />
           <LinearProgress />
           <Typography component="p" variant="subtitle1" >
-            {tier.description}
+            {queueInfo.description}
           </Typography>
-
         </CardContent>
         <CardActions>
-          <Button fullWidth variant={tier.buttonVariant} color="primary">
-            {tier.buttonText}
+          <Button fullWidth variant="contained" color="primary">
+            取消等候
           </Button>
         </CardActions>
       </Card>
@@ -99,7 +90,7 @@ function Order() {
 export default Order;
 
 export async function getServerSideProps({ params }) {
-  return {
-    props: { paramId: params.id }, // will be passed to the page component as props
-  }
+  const res = await request.get(`/api/queueing/${params.id}`)
+  const data = await res.data
+  return { props: { queueInfo: data } }
 }
