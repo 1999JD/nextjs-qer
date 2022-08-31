@@ -5,7 +5,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { Link } from "next/link";
+import Link from "next/link";
 import styled from '@emotion/styled'
 
 function Step1() {
@@ -34,21 +34,17 @@ function Step3() {
 }
 
 function FinishedStep() {
-
   return (
     <div>
-      <Typography align='center'>
+      <Typography align='center' sx={{mb: 2}}>
         現在你已經知道如何使用 Qer 了
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-      >
-        <Link to="/customer/" >立即前往使用</Link>
-      </Button>
+
+      <Link href="/search" >
+        <Button variant="outlined" color="error" sx={{ display: 'block', margin: 'auto' }}>立即前往使用</Button>
+      </Link>
     </div>
   )
-
 }
 
 
@@ -91,7 +87,7 @@ export default function HorizontalLinearStepper() {
 
 
   return (
-    <Paper sx={{ px: 4 ,py:2 }} >
+    <Paper sx={{ px: 4, py: 2 }} >
       <div>
         {getStepContent(activeStep)}
       </div>
@@ -108,7 +104,7 @@ export default function HorizontalLinearStepper() {
         })}
       </Stepper>
       <ButtonWrap>
-        <Button color="primary" disabled={activeStep === 0} onClick={handleBack} >
+        <Button color="primary" disabled={!activeStep} onClick={handleBack} >
           上一步
         </Button>
         <Button
