@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { Link } from "next/link";
-
+import styled from '@emotion/styled'
 
 function Step1() {
   return (
@@ -35,17 +35,19 @@ function Step3() {
 
 function FinishedStep() {
 
-  return (<div>
-    <Typography align='center'>
-      現在你已經知道如何使用 Qer 了
-    </Typography>
-    <Button
-      variant="contained"
-      color="primary"
-    >
-      <Link to="/customer/" >立即前往使用</Link>
-    </Button>
-  </div>)
+  return (
+    <div>
+      <Typography align='center'>
+        現在你已經知道如何使用 Qer 了
+      </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+      >
+        <Link to="/customer/" >立即前往使用</Link>
+      </Button>
+    </div>
+  )
 
 }
 
@@ -67,6 +69,11 @@ function getStepContent(step) {
   }
 }
 
+const ButtonWrap = styled('div')({
+  width: 'fit-content',
+  marginLeft: 'auto'
+})
+
 export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
@@ -84,23 +91,23 @@ export default function HorizontalLinearStepper() {
 
 
   return (
-    <Paper >
-      <div >
+    <Paper sx={{ px: 4 ,py:2 }} >
+      <div>
         {getStepContent(activeStep)}
       </div>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} sx={{ mb: 3 }}>
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
 
           return (
             <Step key={index} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
+              <StepLabel {...labelProps} sx={{ mt: 2 }}>{label}</StepLabel>
             </Step>
           );
         })}
       </Stepper>
-      <div >
+      <ButtonWrap>
         <Button color="primary" disabled={activeStep === 0} onClick={handleBack} >
           上一步
         </Button>
@@ -113,7 +120,7 @@ export default function HorizontalLinearStepper() {
           {activeStep === steps.length - 1 && '下一步'}
           {activeStep === steps.length && '返回第一步'}
         </Button>
-      </div>
+      </ButtonWrap>
     </Paper>
   );
 }

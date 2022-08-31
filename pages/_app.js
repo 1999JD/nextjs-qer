@@ -26,9 +26,16 @@ export default function MyApp(props) {
         <CssBaseline />
         <Global
           styles={css`
-            ul {
+          body {
+            fontFamily: 'Noto Sans TC';
+          }  
+          ul {
               list-style: none;
             }
+            p {
+              margin: 0;
+            }
+
          `}
         />
         <Layout>
