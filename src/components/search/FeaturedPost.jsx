@@ -9,9 +9,11 @@ import Image from 'next/image'
 
 function FeaturedPost({ post }) {
   return (
-    <Grid item xs={12} md={6} component="li">
+    <Grid item xs={12} sm={6} lg={4} component="li"  >
       <Card>
-        <Image src={post.image} width={300} height={150} />
+        <div style={{ objectFit: ' cover' }}>
+          <Image src={post.image} width={300} height={150} layout="responsive" />
+        </div>
         <CardContent>
           <Typography component="h2" variant="h5">
             {post.title}
@@ -19,7 +21,13 @@ function FeaturedPost({ post }) {
           <Typography component="h2" variant="subtitle1" color="textSecondary">
             {post.distance}
           </Typography>
-          <Typography component="h2" variant="subtitle1" paragraph >
+          <Typography component="h2" variant="subtitle1" paragraph sx={
+            {
+              overflow: ' hidden',
+              display: ' -webkit-box',
+              'WebkitBoxOrient': 'vertical',
+              'WebkitLineClamp': ' 2',
+            }} >
             {post.description}
           </Typography>
           <Typography component="h2" variant="subtitle1" color="primary">
@@ -30,7 +38,7 @@ function FeaturedPost({ post }) {
         </CardContent>
         <CardMedia image={post.image} title={post.imageTitle} />
       </Card>
-    </Grid>
+    </ Grid >
   )
 }
 

@@ -30,11 +30,14 @@ export default function MyApp(props) {
             fontFamily: 'Noto Sans TC';
           }  
           ul {
-              list-style: none;
-            }
-            p {
-              margin: 0;
-            }
+            list-style: none;
+          }
+          li {
+            padding: 0;
+          }
+          p {
+            margin: 0;
+          }
 
          `}
         />

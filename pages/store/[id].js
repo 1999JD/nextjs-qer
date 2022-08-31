@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import HighlightOff from '@mui/icons-material/HighlightOff';
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import request from '../../src/request'
+
 
 const LightBoxStyled = styled(Paper)({
   position: 'fixed',
@@ -92,7 +94,7 @@ function Lightbox({ handleLightbox }) {
 }
 
 
-function Client() {
+export default function Store({ storeInfo }) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
 
   const handleLightbox = () => {
@@ -107,16 +109,12 @@ function Client() {
           <ImageStyled src='https://source.unsplash.com/random/300x150/?food' layout='fill' />
         </Grid>
         <Grid item xs={12} md={7}>
-          <h2>美食大同</h2>
-          <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, itaque facere voluptatibus sunt odit eum ipsam architecto nostrum optio, inventore, at veritatis et quia soluta nemo! Molestiae cumque laudantium eveniet. </p>
-          <p>XX市XX區XX里XX路XX段XX號</p>
-          <div>
-            <h3 >目前須等候時間:</h3><span >1:10:36</span>
-          </div>
-          <div>
-            <h3 >目前號碼:</h3><span >8</span>
-          </div>
-
+          <h2>{storeInfo.title}</h2>
+          <p>{storeInfo.description}</p>
+          <h3 >目前須等候時間:</h3>
+          <p>{storeInfo.currentWaitTime}</p>
+          <h3>目前號碼:</h3>
+          <p>{storeInfo.currentWaitNumber}</p>
           <Button variant="contained"
             color="primary"
             onClick={handleLightbox}>
@@ -133,4 +131,9 @@ function Client() {
     </Container>
   )
 }
-export default Client;
+
+export async function getServerSideProps({ params }) {
+  const res = await request.get(`/api/store/${params.id}`)
+  const data = await res.data
+  return { props: { storeInfo: data } }
+}
