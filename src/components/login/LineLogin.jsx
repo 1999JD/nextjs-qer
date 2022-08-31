@@ -1,6 +1,8 @@
 import Button from '@mui/material/Button';
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import LineImage from '../../assets/btn_login_base.png'
+import Image from 'next/image'
 
 
 function LineLogin() {
@@ -9,7 +11,7 @@ function LineLogin() {
         let url = "https://access.line.me/oauth2/v2.1/authorize?";
         url += 'response_type=code';
         url += `&client_id=${1656184249}`;
-        url += `&redirect_uri=${`http://localhost:3000/login`}`;
+        url += `&redirect_uri=${`http://localhost:3001/login`}`;
         url += `&state=${lineState}`;
         url += "&scope=openid%20profile";
         window.open(url, '_self');
@@ -35,8 +37,10 @@ function LineLogin() {
     })
     return (
         <>
-            <span className="line-login-hint">或者使用 line 登入</span>
-            <Button className="line-login" onClick={handleLineLogin}></Button>
+            <p>或者使用 line 登入</p>
+            <a role="button" onClick={handleLineLogin}>
+                <Image src={LineImage} width={151} height={44} />
+            </a>
         </>
     )
 }

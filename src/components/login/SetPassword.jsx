@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import { apiUserPassword } from '../../api/index'
 
 function SetPassword({ account, uid }) {
-    const classes = useStyles();
     const history = useRouter()
     const [password, setPassword] = useState("");
     const sendPassWord = (e) => {
@@ -34,7 +33,7 @@ function SetPassword({ account, uid }) {
             <Typography component="h2" variant="h6" align={`center`} >
                 {account.ICP}  {account.phone}
             </Typography>
-            <form id="passwordForm" className={classes.loginForm} noValidate>
+            <form id="passwordForm"  noValidate>
                 <input type="text" value={account.ICP + account.phone} autoComplete="username number" readOnly hidden />
                 <TextField
                     variant="outlined"
@@ -55,7 +54,7 @@ function SetPassword({ account, uid }) {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.loginSubmit}
+                    
                     onClick={sendPassWord}
                 >
                     送出

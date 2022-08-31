@@ -46,80 +46,76 @@ function Login() {
 
   return (
     <Container component="main" maxWidth="xs">
+      <Avatar sx={{ margin: 'auto', mb: 4 }}>
+        <LockOutlinedIcon />
+      </Avatar>
+      {pageName === "page-account" && (<form noValidate>
+        <Typography component="h1" variant="h5" align={`center`} >
+          註冊/登入<br />
+          輸入您的手機
+        </Typography>
+        <TextField
+          id="ICP"
+          select
+          margin="normal"
+          label="國際冠碼"
+          value={account.ICP}
+          onChange={(e) => setAccount((prevState) => {
+            return {
+              ...prevState,
+              ICP: e.target.value,
+            }
+          })}
+          helperText="請輸入您門號的國際冠碼"
+          variant="outlined"
+        >
+          <MenuItem value={`+886`}>+886</MenuItem>
+        </TextField>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          // required
+          fullWidth
+          name="phone"
+          label="電話號碼"
+          type="tel"
+          id="phone"
+          helperText="請輸入您的門號"
+          value={account.phone}
+          onChange={(e) => setAccount((prevState) => {
+            return {
+              ...prevState,
+              phone: e.target.value,
+            }
+          })}
+        />
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
 
-      <div >
-        <Avatar >
-          <LockOutlinedIcon />
-        </Avatar>
-        {pageName === "page-account" && (<form noValidate>
-          <Typography component="h1" variant="h5" align={`center`} >
-            註冊/登入<br />
-            輸入您的手機
-          </Typography>
-          <TextField
-            id="ICP"
-            select
-            margin="normal"
-            label="國際冠碼"
-            value={account.ICP}
-            onChange={(e) => setAccount((prevState) => {
-              return {
-                ...prevState,
-                ICP: e.target.value,
-              }
-            })}
-            helperText="請輸入您門號的國際冠碼"
-            variant="outlined"
-          >
-            <MenuItem value={`+886`}>+886</MenuItem>
-          </TextField>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            // required
-            fullWidth
-            name="phone"
-            label="電話號碼"
-            type="tel"
-            id="phone"
-            helperText="請輸入您的門號"
-            value={account.phone}
-            onChange={(e) => setAccount((prevState) => {
-              return {
-                ...prevState,
-                phone: e.target.value,
-              }
-            })}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-
-            onClick={sendAccount}
-          >
-            送出
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                忘記密碼?
-              </Link>
-            </Grid>
+          onClick={sendAccount}
+        >
+          送出
+        </Button>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              忘記密碼?
+            </Link>
           </Grid>
-        </form>)}
-        {pageName === 'page-sms' && (
-          <SMS account={account} setPageName={setPageName} uid={uid} setUid={setUid} />
-        )}
-        {pageName === 'page-set-password' && accountState === false && (
-          <SetPassword account={account} uid={uid} />
-        )}
-        {pageName === 'page-password' && accountState === true && (
-          <Password account={account} />
-        )}
-
-      </div>
+        </Grid>
+      </form>)}
+      {pageName === 'page-sms' && (
+        <SMS account={account} setPageName={setPageName} uid={uid} setUid={setUid} />
+      )}
+      {pageName === 'page-set-password' && accountState === false && (
+        <SetPassword account={account} uid={uid} />
+      )}
+      {pageName === 'page-password' && accountState === true && (
+        <Password account={account} />
+      )}
       <hr />
       <LineLogin />
     </Container >
