@@ -9,7 +9,13 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import StarIcon from '@mui/icons-material/StarBorder';
+import styled from '@emotion/styled'
 
+
+const ImageStyled = styled('img')({
+  width: '100%',
+  height: 'auto',
+})
 //materialui component copyright
 function Order() {
   // let notification = () => {
@@ -70,20 +76,12 @@ function Order() {
 
         />
         <CardContent>
-          <div >
-            <Typography variant="h6" color="textSecondary">
-              序號
-            </Typography>
-            <Typography component="h2" variant="h3" color="textPrimary">
-              {number}
-            </Typography>
-          </div>
-          <img src="https://fakeimg.pl/200x150/eeeeee/000" alt="img of cooking" />
-          <div >
-            <LinearProgress />
-          </div>
-
-          <Typography component="p" variant="subtitle1" align="center" >
+          <Typography component="h2" variant="h3" align='center'>
+            {number}
+          </Typography>
+          <ImageStyled src='https://source.unsplash.com/random/300x150/?food' />
+          <LinearProgress />
+          <Typography component="p" variant="subtitle1" >
             {tier.description}
           </Typography>
 
