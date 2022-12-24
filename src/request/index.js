@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 
-const dev = process.env.NODE_ENV !== 'production'
-const server = dev ? 'http://172.16.131.46:7070' : 'https://next-qer.herokuapp.com/'
+
+const server = process.env.DOMAIN
 
 const request = axios.create({
   baseURL: server,

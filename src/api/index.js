@@ -1,4 +1,5 @@
 import axios from 'axios'
+// const domain = process.env.DOMAIN
 const domain = process.env.DOMAIN
 // const baseURL = 'http://loccalhost:3000'
 
