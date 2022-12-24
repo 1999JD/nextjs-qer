@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import FeaturedPost from '../src/components/search/FeaturedPost';
 
 export default function Search({ featuredPosts }) {
-
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2} component="ul">
@@ -17,7 +16,14 @@ export default function Search({ featuredPosts }) {
 }
 
 export async function getServerSideProps() {
-  const res = await request.get(`/api/search`)
-  const data = await res.data
-  return { props: { featuredPosts: data } }
+  console.log(request.defaults.baseURL)
+  console.log(process.env.DOMAIN)
+  try {
+    const res = await request.get(`/api/search`)
+    const data = await res.data
+    return { props: { featuredPosts: data } }
+  } catch (error) {
+    console.log(error)
+    return { props: { featuredPosts: [] } }
+  }
 }
