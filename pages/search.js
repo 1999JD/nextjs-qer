@@ -16,8 +16,8 @@ export default function Search({ featuredPosts }) {
 }
 
 export async function getServerSideProps() {
-  console.log(request.defaults.baseURL)
-  console.log(process.env.DOMAIN)
+  console.log(`baseurl ${request.defaults.baseURL}`)
+  console.log(`domain ${process.env.DOMAIN}`)
   try {
     const res = await request.get(`/api/search`)
     const data = await res.data
