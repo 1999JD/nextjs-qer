@@ -9,6 +9,4 @@ const request = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
-request.defaults.timeout = 2500
-
 export default request
