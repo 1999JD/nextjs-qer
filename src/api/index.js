@@ -1,5 +1,5 @@
 import axios from 'axios'
-const domain = 'http://localhost:62589'
+const domain = process.env.DOMAIN
 // const baseURL = 'http://loccalhost:3000'
 
 const requestAuth = axios.create({
